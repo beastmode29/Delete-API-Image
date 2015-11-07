@@ -1,0 +1,31 @@
+"""
+Delete a photo using the Ning API
+"""
+
+import oauth2 as oauth
+import ningapi
+
+consumer = oauth.Consumer(
+        key="0d716e57-5ada-4b29-a33c-2f4af1b26837",
+        secret="f0963fa5-1259-434f-86fc-8a17d14b16ca"
+        )
+token = oauth.Token(
+        key="07aa5613-6783-4735-b8f1-4c69642ad438",
+        secret="e2c528ec-8b81-402c-8f88-8bf17ba8751f"
+        )
+
+host = "external.ningapis.com"
+network = "apiexample"
+
+ning_api = ningapi.Client(host, network, consumer, token)
+
+
+
+photo_fields = {
+        "id": "3011345:Photo:3928"
+        }
+
+content = ning_api.delete("http://api.ning.com/files/ToQMaI9f*6I7Qzxqwf2OqpQBhWlX6iR6*os1zpc6uBK8BY59UQjHB47*qC6wUJoZ6fX9ak7yFtlzRdG1c5nyARzxQ60kKN9h/HeaderWhitesmalll.jpg", photo_fields)
+
+if content["success"]:
+    print "Photo deleted"
